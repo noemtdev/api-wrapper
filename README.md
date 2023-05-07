@@ -37,7 +37,7 @@ async def main():
     print(scammer)
 
     # Get an item image
-    url = await images.get_image("bread", variation="enchanted") 
+    url = await images.get_image("hyperion", variation="enchanted") 
     # variation defaults to "normal" but it can also be "enchanted"
 
     print(url)
