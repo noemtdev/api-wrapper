@@ -1,7 +1,7 @@
 # block game bot
 
 [![license](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
-[![pypi](https://img.shields.io/pypi/v/lilyweight?style=for-the-badge)](https://pypi.org/project/lilyweight/)
+[![pypi](https://img.shields.io/pypi/v/blockgamebot?style=for-the-badge)](https://pypi.org/project/blockgamebot/)
 
 block game bot api Wrapper
 
