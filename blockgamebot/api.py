@@ -11,7 +11,6 @@ class Scammers:
             "lookup": f"https://api.nom-nom.link/lookup/scammer/ARGUMENTS?key={self.key}",
         }
 
-    
     async def get_all(self):
 
         if self.session is None:
@@ -43,7 +42,6 @@ class itemImages:
         }
 
         self.variations = ["normal", "enchanted"]
-
 
     async def get_image(self, item:str, variation="normal"):
 
