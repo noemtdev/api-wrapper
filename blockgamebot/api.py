@@ -18,17 +18,22 @@ class Scammers:
             self.session = aiohttp.ClientSession()
         
         async with self.session.get(self.urls["all"]) as resp:
-            return await resp.json()
+            jsonResponse = await resp.json()
+            await self.session.close()
         
-    
+        return jsonResponse
+        
     async def lookup(self, argument):
 
         if self.session is None:
             self.session = aiohttp.ClientSession()
             
         async with self.session.get(self.urls["lookup"].replace("ARGUMENTS", argument)) as resp:
-            return await resp.json()
-
+            jsonResponse = await resp.json()
+            await self.session.close()
+        
+        return jsonResponse
+        
 class itemImages:
     def __init__(self, session:aiohttp.ClientSession=None):
 
@@ -44,16 +49,19 @@ class itemImages:
 
         if self.session is None:
             self.session = aiohttp.ClientSession()
+        
+        error = ""
 
         if variation.lower() not in self.variations:
-            raise ValueError(f"Variation must be one of the following: {self.variations}")
-        
-        url = self.urls["base"].replace("{variation}", variation).replace("{item}", item.upper())
-        async with self.session.get(url) as resp:
-            if resp.status == 404:
-                raise ValueError(f"Item not found")
+            error += (f"Variations must be one of the following: {self.variations}, defaulting to 'normal'. ")
+            variation = "normal"
             
-            return url
+        response = self.urls["base"].replace("{variation}", variation).replace("{item}", item.upper()) 
+        async with self.session.get(response) as resp:
+            if resp.status == 404:
+                error += f"The item '{item}' does not exist, defaulting to 'barrier'."
+                item = "barrier"
+                response = self.urls["base"].replace("{variation}", variation).replace("{item}", item.upper())
+            await self.session.close()
         
-
-
+        return {"url": response, "error": error}
