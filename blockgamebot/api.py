@@ -13,20 +13,32 @@ class Scammers:
 
     
     async def get_all(self):
+        close = False
 
         if self.session is None:
+            close = True
             self.session = aiohttp.ClientSession()
         
         async with self.session.get(self.urls["all"]) as resp:
+            
+            if close is True:
+                await self.session.close()
+                
             return await resp.json()
         
     
     async def lookup(self, argument):
+        close = False
 
         if self.session is None:
+            close = True
             self.session = aiohttp.ClientSession()
             
         async with self.session.get(self.urls["lookup"].replace("ARGUMENTS", argument)) as resp:
+            
+            if close is True:
+                await self.session.close()
+                
             return await resp.json()
 
 class itemImages:
@@ -41,18 +53,28 @@ class itemImages:
 
 
     async def get_image(self, item:str, variation="normal"):
-
-        if self.session is None:
-            self.session = aiohttp.ClientSession()
-
+        close = False
+        
         if variation.lower() not in self.variations:
             raise ValueError(f"Variation must be one of the following: {self.variations}")
+            
+        if self.session is None:
+            close = True
+            self.session = aiohttp.ClientSession()
         
         url = self.urls["base"].replace("{variation}", variation).replace("{item}", item.upper())
         async with self.session.get(url) as resp:
+            
             if resp.status == 404:
+                
+                if close is True:
+                    await self.session.close()
+                    
                 raise ValueError(f"Item not found")
             
+            if close is True:
+                    await self.session.close()
+                    
             return url
         
 
