@@ -12,14 +12,11 @@ async def main():
     print(all_scammers)
 
     # Lookup a scammer
-    scammer = await scammers.lookup("asov")
+    scammer = await scammers.lookup("asov") # First part of tag, whole tag or discord ID may be used
     print(scammer)
 
     # Get an item image
-    url = await images.get_image("bread", variation="enchanted") 
-    # variation defaults to "normal" but it can also be "enchanted"
-
+    url = await images.get_image("bread", variation="enchanted") # Variation defaults to "normal", options are "normal" or "enchanted"
     print(url)
-
 
 asyncio.run(main())
