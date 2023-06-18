@@ -21,7 +21,7 @@ This requires a block game bot API key. You may obtain one by joining [this](htt
 ```py
 import asyncio
 
-from blockgamebot.api import Scammers, itemImages
+from blockgamebot.api import Scammers
 
 scammers = Scammers("BLOCKGAMEBOT_API_KEY")
 images = itemImages()
@@ -35,13 +35,6 @@ async def main():
     # Lookup a scammer
     scammer = await scammers.lookup("asov")
     print(scammer)
-
-    # Get an item image
-    url = await images.get_image("hyperion", variation="enchanted") 
-    # variation defaults to "normal" but it can also be "enchanted"
-
-    print(url)
-
 
 asyncio.run(main())
 ```

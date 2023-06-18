@@ -1,9 +1,8 @@
 import asyncio
 
-from blockgamebot.api import Scammers, itemImages
+from blockgamebot.api import Scammers
 
-scammers = Scammers("BLOCKGAMEBOT_API_KEY")
-images = itemImages()
+scammers = Scammers("LY4z8aCG1e9V3da64e1D1egbAddd4aafr13ef34ec8")
 
 async def main():
 
@@ -14,12 +13,5 @@ async def main():
     # Lookup a scammer
     scammer = await scammers.lookup("asov")
     print(scammer)
-
-    # Get an item image
-    url = await images.get_image("bread", variation="enchanted") 
-    # variation defaults to "normal" but it can also be "enchanted"
-
-    print(url)
-
 
 asyncio.run(main())

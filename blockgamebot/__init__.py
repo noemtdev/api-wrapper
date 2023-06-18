@@ -1,1 +1,1 @@
-from .api import Scammers, itemImages
+from .api import Scammers
