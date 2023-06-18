@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '1.0'
+VERSION = '1.3'
 DESCRIPTION = 'Hypixel SkyBlock Scammer List Package'
 
 # Setting up
