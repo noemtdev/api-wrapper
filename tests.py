@@ -2,7 +2,7 @@ import asyncio
 
 from blockgamebot.api import Scammers
 
-scammers = Scammers("LY4z8aCG1e9V3da64e1D1egbAddd4aafr13ef34ec8")
+scammers = Scammers("###")
 
 async def main():
 
