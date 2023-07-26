@@ -24,7 +24,6 @@ import asyncio
 from blockgamebot.api import Scammers
 
 scammers = Scammers("BLOCKGAMEBOT_API_KEY")
-images = itemImages()
 
 async def main():
 
